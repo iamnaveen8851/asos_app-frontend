@@ -1,2 +1,12 @@
-# asos_app-frontend
-In this  repo  i am adding the code of asos website clone 
+# Asos-Clone
+
+
+
+
+## Tech Stack
+  - React
+  - React-router-dom
+  - chakra UI
+  
+
+
