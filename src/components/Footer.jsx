@@ -3,7 +3,7 @@ import { SimpleGrid, Box, Heading, Link, Text } from "@chakra-ui/react";
 const Footer = () => {
   return (
     <Box bg="RGBA(0, 0, 0, 0.08)" >
-      <SimpleGrid fontFamily={"futura-pt, sans-serif"} p={10} columns={{
+      <SimpleGrid fontFamily={"futura-pt, sans-serif"} p={5} columns={{
         base: "1",
         sm : "2",
         md : "3",
