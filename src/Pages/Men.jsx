@@ -202,7 +202,7 @@ const Men = () => {
       {/* ASOS downlaod app label  */}
       <Link href="https://www.asos.com/discover/our-apps/?ctaref=hp|unisex|banner|1|edit|appdownload&source_caller=ui&shortlink=f4jq8ws5&c=homepage_banner&pid=homepage_banner&deep_link_value=asos%3A%2F%2Fhome&af_xp=custom">
         <Box>
-          <Image w="100vw" src="public\ASOS Label to download app.png" />
+          <Image w="100vw" src="\ASOS Label to download app.png" />
         </Box>
       </Link>
 
