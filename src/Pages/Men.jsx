@@ -116,7 +116,7 @@ const Men = () => {
       {/* Men's Big picture for sneakers products */}
       <Flex color="white">
         <Center w="100vw">
-          <Image src="public\Sneakers.png" />
+          <Image src="\Sneakers.png" />
         </Center>
       </Flex>
 
