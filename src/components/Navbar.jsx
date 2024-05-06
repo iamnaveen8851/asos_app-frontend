@@ -68,16 +68,16 @@ function AddToCart() {
       viewBox="0 -1 32 32"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      // xmlns:xlink="http://www.w3.org/1999/xlink"
       xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
     >
       <g
         id="Page-1"
         stroke="white"
-        stroke-width="1"
+        // stroke-width="1"
         fill="none"
-        fill-rule="evenodd"
-        sketch:type="MSPage"
+        // fill-rule="evenodd"
+        // sketch:type="MSPage"
       >
         <g
           id="Icon-Set"
@@ -188,15 +188,19 @@ const Navbar = () => {
           <Menu isOpen={isLogin}>
             <MenuButton
               onMouseEnter={() => setIsLogin(true)}
-              onMouseLeave={()=> setIsLogin(false)}
+              // onMouseLeave={() => setIsLogin(false)}
               // onMouseLeave={() => setIsLogin(false)}
             >
               <LoginIcon />
             </MenuButton>
             <MenuList>
               <MenuItem>
-                <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
-                  <Link>Sign In</Link>  | <Link>Join</Link>
+                <Box
+                  display={"flex"}
+                  justifyContent={"space-between"}
+                  gap={"20px"}
+                >
+                  <Link to="/login">Sign In</Link> | <Link to="/signup">Join</Link>
                 </Box>
               </MenuItem>
               <MenuItem>Create a Copy</MenuItem>

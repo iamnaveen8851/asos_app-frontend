@@ -7,6 +7,7 @@ function App() {
     <>
       <Navbar />
       <AllRoutes />
+      <br />
       <Footer />
     </>
   );
