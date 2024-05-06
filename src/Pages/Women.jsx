@@ -7,10 +7,8 @@ import {
   Heading,
   Text,
   Button,
-  Link,
 } from "@chakra-ui/react";
-
-
+import { Link } from "react-router-dom";
 const Women = () => {
   const womensData = [
     {
@@ -31,7 +29,7 @@ const Women = () => {
     {
       img: "https://content.asos-media.com/-/media/homepages/ww/2024/may/02/homepage/ww/ww_global_revolution_moment_870x1110.jpg",
       title: "NEW: REVOLUTION",
-      description: "Ft. the Bright Light Bronzing Drops",
+      description: "Ft. the Bright Light Bronzing",
     },
   ];
 
@@ -73,11 +71,13 @@ const Women = () => {
   return (
     <>
       {/* Men's Big picture  for retro products*/}
-      <Flex color="white">
-        <Center w="100vw">
-          <Image src="\Women's Big picture.png" />
-        </Center>
-      </Flex>
+      <Link to="/products">
+        <Flex color="white">
+          <Center w="100vw"  boxShadow='sm' p='6' rounded='md'>
+            <Image src="\Women's Big picture.png" />
+          </Center>
+        </Flex>
+      </Link>
 
       <br />
 
@@ -100,26 +100,30 @@ const Women = () => {
           spacing={10}
         >
           {womensData.map((data, index) => (
-            <Box key={index}>
-              <Image w={"100%"} src={data.img} />
-              <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
-                {data.title}
-              </Heading>
-              <Text fontSize={"16px"} textAlign={"center"}>
-                {data.description}
-              </Text>
-            </Box>
+            <Link to="/products" key={index}>
+              <Box  boxShadow='sm' p='2' rounded='md'>
+                <Image w={"100%"} src={data.img} />
+                <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
+                  {data.title}
+                </Heading>
+                <Text fontSize={"16px"} textAlign={"center"}>
+                  {data.description}
+                </Text>
+              </Box>
+            </Link>
           ))}
         </SimpleGrid>
       </Box>
 
       <br />
       {/* Men's Big picture for sneakers products */}
-      <Flex color="white">
-        <Center w="100vw">
-          <Image src="\the glow.png" />
-        </Center>
-      </Flex>
+      <Link to="/products">
+        <Flex color="white">
+          <Center w="100vw"  >
+            <Image src="\the glow.png" />
+          </Center>
+        </Flex>
+      </Link>
 
       {/* Ocassional shop Cards */}
       <Box
@@ -142,15 +146,17 @@ const Women = () => {
           spacing={10}
         >
           {shopData.map((data, index) => (
-            <Box key={index}>
-              <Image w={"100%"} src={data.img} />
-              <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
-                {data.title}
-              </Heading>
-              <Text fontSize={"16px"} textAlign={"center"}>
-                {data.description}
-              </Text>
-            </Box>
+            <Link to="/products" key={index}>
+              <Box >
+                <Image w={"100%"} src={data.img} />
+                <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
+                  {data.title}
+                </Heading>
+                <Text fontSize={"16px"} textAlign={"center"}>
+                  {data.description}
+                </Text>
+              </Box>
+            </Link>
           ))}
           <Box
             ml={{
@@ -175,25 +181,29 @@ const Women = () => {
             justifyContent={"space-around"}
             alignItems={"center"}
           >
-            <Button
-              p={8}
-              border={"1px solid black"}
-              borderRadius={"0%"}
-              bg="white"
-              _hover={{ background: "black", color: "white" }}
-            >
-              SHOP NOW
-            </Button>
+            <Link to="/products">
+              <Button
+                p={8}
+                border={"1px solid black"}
+                borderRadius={"0%"}
+                bg="white"
+                _hover={{ background: "black", color: "white" }}
+              >
+                SHOP NOW
+              </Button>
+            </Link>
             &nbsp;
-            <Button
-              p={8}
-              border={"1px solid black"}
-              borderRadius={"0%"}
-              bg="white"
-              _hover={{ background: "black", color: "white" }}
-            >
-              SHOP NOW
-            </Button>
+            <Link to="/products">
+              <Button
+                p={8}
+                border={"1px solid black"}
+                borderRadius={"0%"}
+                bg="white"
+                _hover={{ background: "black", color: "white" }}
+              >
+                SHOP NOW
+              </Button>
+            </Link>
           </Box>
         </SimpleGrid>
       </Box>
@@ -235,9 +245,11 @@ const Women = () => {
           }}
         >
           {brandsData.map((data, index) => (
-            <Box key={index} className="image-item">
-              <Image w={"100vw"} src={data.img} />
-            </Box>
+            <Link to="/products" key={index}>
+              <Box className="image-item">
+                <Image w={"100vw"} src={data.img} />
+              </Box>
+            </Link>
           ))}
         </SimpleGrid>
       </Box>

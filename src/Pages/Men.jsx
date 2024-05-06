@@ -8,8 +8,9 @@ import {
   Heading,
   Text,
   Button,
-  Link,
 } from "@chakra-ui/react";
+
+import { Link } from "react-router-dom";
 const Men = () => {
   const mensData = [
     {
@@ -72,12 +73,13 @@ const Men = () => {
   return (
     <>
       {/* Men's Big picture  for retro products*/}
-      <Flex color="white">
-        <Center w="100vw">
-          <Image src="\Men's  big picture.png" />
-        </Center>
-      </Flex>
-
+      <Link to="/products">
+        <Flex color="white">
+          <Center w="100vw">
+            <Image src="\Men's  big picture.png" />
+          </Center>
+        </Flex>
+      </Link>
       <br />
 
       {/* Cards */}
@@ -99,26 +101,30 @@ const Men = () => {
           spacing={10}
         >
           {mensData.map((data, index) => (
-            <Box key={index}>
-              <Image w={"100%"} src={data.img} />
-              <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
-                {data.title}
-              </Heading>
-              <Text fontSize={"16px"} textAlign={"center"}>
-                {data.description}
-              </Text>
-            </Box>
+            <Link to="/products" key={index}>
+              <Box>
+                <Image w={"100%"} src={data.img} />
+                <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
+                  {data.title}
+                </Heading>
+                <Text fontSize={"16px"} textAlign={"center"}>
+                  {data.description}
+                </Text>
+              </Box>
+            </Link>
           ))}
         </SimpleGrid>
       </Box>
 
       <br />
       {/* Men's Big picture for sneakers products */}
-      <Flex color="white">
-        <Center w="100vw">
-          <Image src="\Sneakers.png" />
-        </Center>
-      </Flex>
+      <Link to="/products">
+        <Flex color="white">
+          <Center w="100vw">
+            <Image src="\Sneakers.png" />
+          </Center>
+        </Flex>
+      </Link>
 
       {/* Ocassional shop Cards */}
       <Box
@@ -141,15 +147,17 @@ const Men = () => {
           spacing={10}
         >
           {shopData.map((data, index) => (
-            <Box key={index}>
-              <Image w={"100%"} src={data.img} />
-              <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
-                {data.title}
-              </Heading>
-              <Text fontSize={"16px"} textAlign={"center"}>
-                {data.description}
-              </Text>
-            </Box>
+            <Link to="/products" key={index}>
+              <Box>
+                <Image w={"100%"} src={data.img} />
+                <Heading fontSize={"20px"} textAlign={"center"} m={"2%"}>
+                  {data.title}
+                </Heading>
+                <Text fontSize={"16px"} textAlign={"center"}>
+                  {data.description}
+                </Text>
+              </Box>
+            </Link>
           ))}
           <Box
             ml={{
@@ -174,25 +182,29 @@ const Men = () => {
             justifyContent={"space-around"}
             alignItems={"center"}
           >
-            <Button
-              p={8}
-              border={"1px solid black"}
-              borderRadius={"0%"}
-              bg="white"
-              _hover={{ background: "black", color: "white" }}
-            >
-              SHOP OCCASIONWEAR
-            </Button>
+            <Link to="/products">
+              <Button
+                p={8}
+                border={"1px solid black"}
+                borderRadius={"0%"}
+                bg="white"
+                _hover={{ background: "black", color: "white" }}
+              >
+                SHOP OCCASIONWEAR
+              </Button>
+            </Link>
             &nbsp;
-            <Button
-              p={8}
-              border={"1px solid black"}
-              borderRadius={"0%"}
-              bg="white"
-              _hover={{ background: "black", color: "white" }}
-            >
-              SHOP NOW
-            </Button>
+            <Link to="/products">
+              <Button
+                p={8}
+                border={"1px solid black"}
+                borderRadius={"0%"}
+                bg="white"
+                _hover={{ background: "black", color: "white" }}
+              >
+                SHOP NOW
+              </Button>
+            </Link>
           </Box>
         </SimpleGrid>
       </Box>
@@ -244,7 +256,6 @@ const Men = () => {
       <br />
 
       {/* Social Media Links */}
-      
     </>
   );
 };

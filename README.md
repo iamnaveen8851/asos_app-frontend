@@ -4,6 +4,7 @@
   - React
   - React-router-dom
   - chakra UI
+  - axios
 
 ## Components
 
