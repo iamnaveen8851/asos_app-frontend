@@ -135,13 +135,27 @@ const Navbar = () => {
       >
         {/* logo */}
         <Box
-          ml="10%"
+          ml={{
+            base: "0%",
+            sm: "1%",
+            md: "2%",
+            lg: "10%",
+            xl: "10%",
+            "2xl": "10%",
+          }}
           // border={"1px solid white"}
         >
           <Link to="/">
             <Image
               w="100px"
-              h="30px"
+              h={{
+                base: "20px",
+                sm: "30px",
+                md: "30px",
+                lg: "30px",
+                xl: "30px",
+                "2xl": "30px",
+              }}
               color="white"
               src="https://companieslogo.com/img/orig/ASC.L_BIG.D-783fd9b6.png?t=1652523993"
             />
@@ -166,6 +180,14 @@ const Navbar = () => {
 
       {/* Ṛight menu */}
       <Box
+        mt={{
+          base: "2%",
+          sm: "1%",
+          md: "0%",
+          lg: "0%",
+          xl: "0%",
+          "2xl": "0%",
+        }}
         w="60%"
         display={"flex"}
         justifyContent={"space-between"}
@@ -204,11 +226,16 @@ const Navbar = () => {
                   justifyContent={"space-between"}
                   gap={"20px"}
                 >
-                  <Link to="/login">
-                  {  isLoggedIn ? "Hi" : "Sign In"}
-                
-                    </Link> |{" "}
-                  <Link to="/signup">{isLoggedIn ? <Button onClick={()=> setIsLoggedIn(false)}>Logout</Button> : "Join"}</Link>
+                  <Link to="/login">{isLoggedIn ? "Hi" : "Sign In"}</Link> |{" "}
+                  <Link to="/signup">
+                    {isLoggedIn ? (
+                      <Button onClick={() => setIsLoggedIn(false)}>
+                        Logout
+                      </Button>
+                    ) : (
+                      "Join"
+                    )}
+                  </Link>
                 </Box>
               </MenuItem>
               <MenuItem>Create a Copy</MenuItem>
