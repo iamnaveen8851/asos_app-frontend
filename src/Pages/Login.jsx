@@ -1,10 +1,14 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+
 import { Box, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 import axios from "axios";
+import { myContext } from "../AuthContext/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { setIsLoggedIn, setUsername } = useContext(myContext);
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -13,6 +17,9 @@ const Login = () => {
         { email, password }
       );
       console.log(data);
+
+      setIsLoggedIn(true);
+    //   navigate("/products");
     } catch (error) {
       console.log(error);
     }

@@ -13,10 +13,12 @@ import {
   MenuList,
   useDisclosure,
   Button,
+  // Button,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { myContext } from "../AuthContext/AuthContext";
 
 // login icon
 // login icon
@@ -99,6 +101,8 @@ function AddToCart() {
 const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isLoggedIn, setIsLoggedIn } = useContext(myContext);
+  // console.log(isLoggedIn)
   return (
     <Flex
       p={4}
@@ -200,7 +204,11 @@ const Navbar = () => {
                   justifyContent={"space-between"}
                   gap={"20px"}
                 >
-                  <Link to="/login">Sign In</Link> | <Link to="/signup">Join</Link>
+                  <Link to="/login">
+                  {  isLoggedIn ? "Hi" : "Sign In"}
+                
+                    </Link> |{" "}
+                  <Link to="/signup">{isLoggedIn ? <Button onClick={()=> setIsLoggedIn(false)}>Logout</Button> : "Join"}</Link>
                 </Box>
               </MenuItem>
               <MenuItem>Create a Copy</MenuItem>

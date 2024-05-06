@@ -6,8 +6,8 @@ import AuthContext from "./AuthContext/AuthContext.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider>
     <BrowserRouter>
-        <App />
       <AuthContext>
+        <App />
       </AuthContext>
     </BrowserRouter>
   </ChakraProvider>
