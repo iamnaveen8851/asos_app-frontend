@@ -24,7 +24,9 @@ const SingleProduct = () => {
   //   fetch single product using _id
   const getSingleProduct = async (_id) => {
     try {
-      const { data } = await axios.get(`https://asos-app-backend.onrender.com/products/${_id}`);
+      const { data } = await axios.get(
+        `https://asos-app-backend.onrender.com/products/${_id}`
+      );
       // console.log(data);
       console.log(data.singleProduct[0]);
       setData(data.singleProduct[0]);
@@ -80,9 +82,16 @@ const SingleProduct = () => {
       >
         <Heading>{data.title}</Heading>
         <br />
-        <Text>Price : {data.price}</Text>
+        <Text fontSize={"18px"} fontWeight={"550"}>Price : Rs.{data.price}</Text>
         <br />
-        <Button onClick={addToCart}>Add To Cart</Button>
+        <Button
+          bg="blue"
+          color="white"
+          _hover={{ background: "green", color: "white" }}
+          onClick={addToCart}
+        >
+          Add To Cart
+        </Button>
       </Box>
     </Flex>
   );
