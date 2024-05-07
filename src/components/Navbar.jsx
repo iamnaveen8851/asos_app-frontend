@@ -106,6 +106,9 @@ const Navbar = () => {
   // console.log(isLoggedIn)
   return (
     <Flex
+     position={"sticky"}
+     top={0}
+     zIndex={10}
       p={4}
       bg="RGBA(0, 0, 0, 0.80)"
       justifyContent={"space-between"}
