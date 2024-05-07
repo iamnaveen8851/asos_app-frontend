@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import { Box, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input, Button, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { myContext } from "../AuthContext/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,8 @@ const Login = () => {
   };
   return (
     <Box maxW="md" mx="auto" mt={8} p={10} borderWidth="1px" borderRadius="lg">
+      <Heading textAlign={"center"} textDecoration={"underline"}>Login</Heading>
+      <br />
       <form onSubmit={handleLogin}>
         <FormControl id="email" mb={4}>
           <FormLabel>Email Address</FormLabel>

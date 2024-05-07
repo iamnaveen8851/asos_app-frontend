@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, Input, Button, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -25,8 +25,12 @@ const navigate = useNavigate()
   };
 
   return (
+    
     <Box maxW="md" mx="auto" mt={8} p={10} borderWidth="1px" borderRadius="lg">
-      <form onSubmit={handleSignUp}>
+      <Heading textAlign={"center"} textDecoration={"underline"}>Sign Up</Heading>
+      <br />
+      <form  onSubmit={handleSignUp}>
+        
         <FormControl id="email" mb={4}>
           <FormLabel>Email Address</FormLabel>
           <Input
