@@ -24,25 +24,36 @@ const SingleProduct = () => {
   };
   return (
     <Flex
-    //   border="1px solid black"
+      //   border="1px solid black"
+      flexDirection={{
+        base: "column",
+        sm: "column",
+        md: "row",
+        lg: "row",
+        xl: "row",
+        "2xl": "row",
+      }}
       justifyContent={"space-between"}
       alignItems={"center"}
       m="auto"
       p={10}
     >
-      <Box 
-    //   p={5}
-    //    border="1px solid black" 
-    boxShadow='xl'
-       ml="5%" >
+      <Box
+        //   p={5}
+        //    border="1px solid black"
+        boxShadow="xl"
+        ml="5%"
+      >
         <Image src={data.img} />
       </Box>
-      <Box 
-      p={10}
-    //   border="1px solid black"
-       >
+      <Box
+        p={10}
+        //   border="1px solid black"
+      >
         <Heading>{data.title}</Heading>
+        <br />
         <Text>Price : {data.price}</Text>
+        <br />
         <Button>Add To Cart</Button>
       </Box>
     </Flex>
