@@ -6,6 +6,8 @@ import Women from "../Pages/Women";
 import Men from "../Pages/Men";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
+import Cart from "../Pages/Cart";
+import SingleProduct from "../Pages/SingleProduct";
 
 const AllRoutes = () => {
   return (
@@ -16,6 +18,8 @@ const AllRoutes = () => {
       <Route path="/men" element={<Men />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path={`/:_id`} element={<SingleProduct/>} />
     </Routes>
   );
 };

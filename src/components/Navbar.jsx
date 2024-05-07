@@ -19,6 +19,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { myContext } from "../AuthContext/AuthContext";
+import Login from "../Pages/Login";
 
 // login icon
 // login icon
@@ -210,16 +211,19 @@ const Navbar = () => {
           </InputGroup>
         </Box>
         {/* login */}
-        <Box>
-          <Menu isOpen={isLogin}>
+        <Box >
+          <Menu 
+          // isOpen={isLogin} 
+           as={Button}>
             <MenuButton
-              onMouseEnter={() => setIsLogin(true)}
+           
+              // onMouseEnter={() => setIsLogin(true)}
               // onMouseLeave={() => setIsLogin(false)}
               // onMouseLeave={() => setIsLogin(false)}
             >
               <LoginIcon />
             </MenuButton>
-            <MenuList>
+            <MenuList ml="30%" mt="-5%">
               <MenuItem>
                 <Box
                   display={"flex"}
@@ -238,10 +242,10 @@ const Navbar = () => {
                   </Link>
                 </Box>
               </MenuItem>
-              <MenuItem>Create a Copy</MenuItem>
-              <MenuItem>Mark as Draft</MenuItem>
-              <MenuItem>Delete</MenuItem>
-              <MenuItem>Attend a Workshop</MenuItem>
+              <MenuItem>My Account</MenuItem>
+              <MenuItem>My Orders</MenuItem>
+              <MenuItem>Return Information</MenuItem>
+              <MenuItem>Contact Preferences </MenuItem>
             </MenuList>
           </Menu>
         </Box>
@@ -252,7 +256,9 @@ const Navbar = () => {
         </Button> */}
         {/* Cart */}
         <Box>
+          <Link to="/cart">
           <AddToCart />
+          </Link>
         </Box>
       </Box>
     </Flex>

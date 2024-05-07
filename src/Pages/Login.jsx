@@ -19,7 +19,7 @@ const Login = () => {
       console.log(data);
 
       setIsLoggedIn(true);
-    //   navigate("/products");
+      navigate("/products");
     } catch (error) {
       console.log(error);
     }

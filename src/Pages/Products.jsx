@@ -11,7 +11,7 @@ import {
   Button,
   Select,
 } from "@chakra-ui/react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 const Products = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -65,16 +65,19 @@ const Products = () => {
   return (
     <>
       <br />
-      <Box  border={"1px solid black"}  w={{
-          base : "50%",
-          sm :"50%",
-          md : "45%",
-          lg : "20%",
-          xl  : "20%",
-          "2xl": "15%"
-         }} m="auto">
-        <Select 
-        
+      <Box
+        border={"1px solid black"}
+        w={{
+          base: "50%",
+          sm: "50%",
+          md: "45%",
+          lg: "20%",
+          xl: "20%",
+          "2xl": "15%",
+        }}
+        m="auto"
+      >
+        <Select
           value={sortByPrice}
           onChange={(e) => setSortByPrice(e.target.value)}
         >
@@ -103,21 +106,22 @@ const Products = () => {
           spacing={10}
         >
           {data.map((data) => (
-            <Box
-              // border={"1px solid grey"}
-              p={5}
-              key={data._id}
-              boxShadow='lg'
-              rounded="md"
-            >
-              <Image w={"100%"} src={data.img} />
-              <Heading fontSize={"16px"} textAlign={"center"} m={"2%"}>
-                {data.title}
-              </Heading>
-              <Text fontSize={"16px"} textAlign={"center"}>
-                Price : {data.price}
-              </Text>
-            </Box>
+            <Link to={`/${data._id}`} key={data._id}>
+              <Box
+                // border={"1px solid grey"}
+                p={5}
+                boxShadow="lg"
+                rounded="md"
+              >
+                <Image w={"100%"} src={data.img} />
+                <Heading fontSize={"16px"} textAlign={"center"} m={"2%"}>
+                  {data.title}
+                </Heading>
+                <Text fontSize={"16px"} textAlign={"center"}>
+                  Price : {data.price}
+                </Text>
+              </Box>
+            </Link>
           ))}
         </SimpleGrid>
       </Box>
