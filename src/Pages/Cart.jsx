@@ -162,16 +162,31 @@ const Cart = () => {
                 </Text>
 
                 <Button
-                  _hover={{ background: "green", color: "white" }}
+                  bg="green"
+                  color="white"
+                  _hover={{ background: "blue", color: "white" }}
                   onClick={handleCheckout}
                 >
                   Checkout
                 </Button>
               </Box>
+              <br />
+              <Box>
+                <Heading fontSize={"20px"}>WE ACCEPT:</Heading>
+                <br />
+                <Box>
+                  <Image
+                    w="300px"
+                    h={"30px"}
+                    src="https://assets.asosservices.com/asos-finance/images/marketing/single.png"
+                  />
+                </Box>
+              </Box>
             </Box>
           </Box>
         </SimpleGrid>
       ) : (
+        // for empty cart
         <Box>
           <Center p={50} display={"flex"}>
             <Heading fontWeight={400}>Your Cart is Empty</Heading> <AddToCart />
@@ -179,7 +194,13 @@ const Cart = () => {
           <Center>
             {" "}
             <Link to="/">
-              <Button bg="green" color={"white"} _hover={{background : "blue", color: "white"}}>Go Back To Home</Button>
+              <Button
+                bg="green"
+                color={"white"}
+                _hover={{ background: "blue", color: "white" }}
+              >
+                Go Back To Home
+              </Button>
             </Link>
           </Center>
         </Box>
