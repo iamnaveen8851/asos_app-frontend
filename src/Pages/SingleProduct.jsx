@@ -16,6 +16,7 @@ const SingleProduct = () => {
   const [data, setData] = useState({});
   const toast = useToast();
 
+  console.log(_id);
   useEffect(() => {
     getSingleProduct(_id);
   }, [_id]);
@@ -23,8 +24,9 @@ const SingleProduct = () => {
   //   fetch single product using _id
   const getSingleProduct = async (_id) => {
     try {
-      const { data } = await axios.get(`http://localhost:8080/products/${_id}`);
-      // console.log(data.singleProduct[0]);
+      const { data } = await axios.get(`https://asos-app-backend.onrender.com/products/${_id}`);
+      // console.log(data);
+      console.log(data.singleProduct[0]);
       setData(data.singleProduct[0]);
     } catch (error) {
       console.log(error);
