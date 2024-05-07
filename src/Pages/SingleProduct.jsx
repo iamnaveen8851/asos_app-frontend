@@ -23,10 +23,8 @@ const SingleProduct = () => {
   //   fetch single product using _id
   const getSingleProduct = async (_id) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:8080/products/singleProduct/${_id}`
-      );
-      console.log(data.singleProduct[0]);
+      const { data } = await axios.get(`http://localhost:8080/products/${_id}`);
+      // console.log(data.singleProduct[0]);
       setData(data.singleProduct[0]);
     } catch (error) {
       console.log(error);
