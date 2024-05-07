@@ -127,13 +127,21 @@ const Cart = () => {
   // );
   return (
     <>
+      <Heading mt="2%" textAlign={"center"} fontSize={"40px"} textDecoration={"underline"}>CART</Heading>
       {cartData.length > 0 ? (
         <SimpleGrid
           w="100%"
-          border={"1px solid black"}
+          // border={"1px solid black"}
           p={10}
           gap={10}
-          columns={2}
+          columns={{
+            base: "1",
+            sm: "1",
+            md: "2",
+            lg: "2",
+            xl: "2",
+            "2xl": "2",
+          }}
           m="auto"
         >
           <Box boxShadow="2xl" p="6">
@@ -155,13 +163,33 @@ const Cart = () => {
           {/* checkout */}
           <Box>
             <Box boxShadow="2xl" p="6">
-              <Heading>Checkout Form</Heading>
-              <Box display={"flex"} justifyContent={"space-between"}>
+              <Heading textAlign={"center"}>Checkout Form</Heading>
+              <Box
+                display={"flex"}
+                justifyContent={"space-between"}
+                flexDirection={{
+                  base: "column",
+                  sm: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                  "2xl": "row",
+                }}
+                p={{
+                  base: "10%",
+                  sm: "10",
+                  md: "2%",
+                  lg: "2%",
+                  xl: "2%",
+                  "2xl": "2%",
+                }}
+              >
                 <Text mt="2%" fontSize={"20px"} fontWeight={"bold"}>
                   Total Price : ${totalPrice}
                 </Text>
 
                 <Button
+                  mt="2%"
                   bg="green"
                   color="white"
                   _hover={{ background: "blue", color: "white" }}
