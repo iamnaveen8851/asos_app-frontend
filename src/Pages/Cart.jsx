@@ -151,8 +151,8 @@ const Cart = () => {
                   <Image m="auto" h="400px" w="350px" src={product.img} />
                 </Box>
                 <Center display={"grid"}>
-                  <Text>{product.title}</Text>
-                  <Text>{product.price}</Text>
+                  <Text fontSize={"18px"} fontWeight={"bold"}>{product.title}</Text>
+                  <Text fontSize={"16px"} fontWeight={"550"}>  Rs.{" "}{product.price}</Text>
                   <Button onClick={() => handleRemove(product._id)}>
                     Remove Item
                   </Button>
