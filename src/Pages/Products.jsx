@@ -117,7 +117,7 @@ const Products = () => {
                 <Heading fontSize={"16px"} textAlign={"center"} m={"2%"}>
                   {data.title}
                 </Heading>
-                <Text fontSize={"16px"} textAlign={"center"}>
+                <Text fontWeight={"550"} fontSize={"16px"} textAlign={"center"}>
                   Price : {data.price}
                 </Text>
               </Box>
