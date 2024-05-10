@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, setUsername } = useContext(myContext);
+  const { setIsLoggedIn, setFirstName } = useContext(myContext);
   const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -16,7 +16,8 @@ const Login = () => {
         `https://asos-app-backend.onrender.com/users/login`,
         { email, password }
       );
-      console.log(data);
+      
+      setFirstName(data.data.existingUser.firstName);
 
       setIsLoggedIn(true);
       navigate("/products");

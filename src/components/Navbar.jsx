@@ -102,7 +102,7 @@ function AddToCart() {
 const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isLoggedIn, setIsLoggedIn } = useContext(myContext);
+  const { isLoggedIn, setIsLoggedIn, firstName } = useContext(myContext);
   // console.log(isLoggedIn)
   return (
     <Flex
@@ -233,7 +233,7 @@ const Navbar = () => {
                   justifyContent={"space-between"}
                   gap={"20px"}
                 >
-                  <Link to="/login">{isLoggedIn ? "Hi" : "Sign In"}</Link> |{" "}
+                  <Link to="/login">{isLoggedIn ? `Hi ${firstName}` : "Sign In"}</Link> |{" "}
                   <Link to="/signup">
                     {isLoggedIn ? (
                       <Button onClick={() => setIsLoggedIn(false)}>
