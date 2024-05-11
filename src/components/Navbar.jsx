@@ -13,13 +13,16 @@ import {
   MenuList,
   useDisclosure,
   Button,
+  Text,
+  Center,
   // Button,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { myContext } from "../AuthContext/AuthContext";
 import Login from "../Pages/Login";
+import axios from "axios";
 
 // login icon
 // login icon
@@ -102,169 +105,257 @@ function AddToCart() {
 const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isLoggedIn, setIsLoggedIn, firstName, searchQuery, setSearchQuery } = useContext(myContext);
+  const {
+    isLoggedIn,
+    setIsLoggedIn,
+    firstName,
+    searchQuery,
+    setSearchQuery,
+    show,
+    setShow,
+  } = useContext(myContext);
+  const navigate = useNavigate();
   // console.log(isLoggedIn)
-  return (
-    <Flex
-     position={"sticky"}
-     top={0}
-     zIndex={10}
-      p={4}
-      bg="RGBA(0, 0, 0, 0.80)"
-      justifyContent={"space-between"}
-      alignItems={"center"}
-      flexDirection={{
-        base: "column",
-        sm: "column",
-        md: "row",
-        lg: "row",
-        xl: "row",
-        "2xl": "row",
-      }}
-    >
-      {/*  left menu*/}
-      <Box
-        display={"flex"}
-        justifyContent={"space-around"}
-        alignItems={"center"}
-        gap={"20px"}
-        w={{
-          base: "60%",
-          sm: "50%",
-          md: "24%",
-          lg: "24%",
-          xl: "24%",
-          "2xl": "24%",
-        }}
-      >
-        {/* logo */}
-        <Box
-          ml={{
-            base: "0%",
-            sm: "1%",
-            md: "2%",
-            lg: "10%",
-            xl: "10%",
-            "2xl": "10%",
-          }}
-          // border={"1px solid white"}
-        >
-          <Link to="/">
-            <Image
-              w="100px"
-              h={{
-                base: "20px",
-                sm: "30px",
-                md: "30px",
-                lg: "30px",
-                xl: "30px",
-                "2xl": "30px",
-              }}
-              color="white"
-              src="https://companieslogo.com/img/orig/ASC.L_BIG.D-783fd9b6.png?t=1652523993"
-            />
-          </Link>
-        </Box>
-        {/* Women and men link */}
-        <Box>
-          <Link to="/women">
-            <Heading fontSize={"21px"} color={"white"}>
-              WOMEN
-            </Heading>
-          </Link>
-        </Box>
-        <Box>
-          <Link to="/men">
-            <Heading color={"white"} fontSize={"21px"}>
-              MEN
-            </Heading>
-          </Link>
-        </Box>
-      </Box>
+  const [searchResults, setSearchResults] = useState([]);
 
-      {/* Ṛight menu */}
-      <Box
-        mt={{
-          base: "2%",
-          sm: "1%",
-          md: "0%",
-          lg: "0%",
-          xl: "0%",
-          "2xl": "0%",
-        }}
-        w="60%"
-        display={"flex"}
+  useEffect(() => {
+    const fetchSearchResults = async (searchQuery) => {
+      try {
+        const res = await axios.get(
+          `https://asos-app-backend.onrender.com/products?search=${searchQuery}`
+        );
+
+        console.log(res.data.products);
+        setShow(true);
+        if (show) {
+          navigate("/products");
+        } else {
+          navigate("/women");
+        }
+        setSearchResults(res.data.products);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (searchQuery.trim() !== "") {
+      const timerId = setTimeout(() => {
+        fetchSearchResults(searchQuery);
+      }, 1000);
+
+      return () => clearTimeout(timerId);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
+  return (
+    <>
+      <Flex
+        position={"sticky"}
+        top={0}
+        zIndex={10}
+        p={4}
+        bg="RGBA(0, 0, 0, 0.80)"
         justifyContent={"space-between"}
         alignItems={"center"}
-        gap="20px"
+        flexDirection={{
+          base: "column",
+          sm: "column",
+          md: "row",
+          lg: "row",
+          xl: "row",
+          "2xl": "row",
+        }}
       >
+        {/*  left menu*/}
         <Box
-          w="80%"
-          // border={"1px solid white"}
+          display={"flex"}
+          justifyContent={"space-around"}
+          alignItems={"center"}
+          gap={"20px"}
+          w={{
+            base: "60%",
+            sm: "50%",
+            md: "24%",
+            lg: "24%",
+            xl: "24%",
+            "2xl": "24%",
+          }}
         >
-          <InputGroup bg="white" borderRadius={"50%"}>
-            <Input placeholder="Search for items and brands" value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)} />
-            <InputRightElement>
-              <IconButton
-                aria-label="Search"
-                icon={<SearchIcon />}
-                variant="ghost"
+          {/* logo */}
+          <Box
+            ml={{
+              base: "0%",
+              sm: "1%",
+              md: "2%",
+              lg: "10%",
+              xl: "10%",
+              "2xl": "10%",
+            }}
+            // border={"1px solid white"}
+          >
+            <Link to="/">
+              <Image
+                w="100px"
+                h={{
+                  base: "20px",
+                  sm: "30px",
+                  md: "30px",
+                  lg: "30px",
+                  xl: "30px",
+                  "2xl": "30px",
+                }}
+                color="white"
+                src="https://companieslogo.com/img/orig/ASC.L_BIG.D-783fd9b6.png?t=1652523993"
               />
-            </InputRightElement>
-          </InputGroup>
+            </Link>
+          </Box>
+          {/* Women and men link */}
+          <Box>
+            <Link to="/women">
+              <Heading fontSize={"21px"} color={"white"}>
+                WOMEN
+              </Heading>
+            </Link>
+          </Box>
+          <Box>
+            <Link to="/men">
+              <Heading color={"white"} fontSize={"21px"}>
+                MEN
+              </Heading>
+            </Link>
+          </Box>
         </Box>
-        {/* login */}
-        <Box >
-          <Menu 
-          // isOpen={isLogin} 
-           as={Button}>
-            <MenuButton
-           
+
+        {/* Ṛight menu */}
+        <Box
+          mt={{
+            base: "2%",
+            sm: "1%",
+            md: "0%",
+            lg: "0%",
+            xl: "0%",
+            "2xl": "0%",
+          }}
+          w="60%"
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          gap="20px"
+        >
+          <Box
+            w="80%"
+            // border={"1px solid white"}
+          >
+            <InputGroup bg="white" borderRadius={"50%"}>
+              <Input
+                placeholder="Search for items and brands"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <InputRightElement>
+                <IconButton
+                  aria-label="Search"
+                  icon={<SearchIcon />}
+                  variant="ghost"
+                />
+              </InputRightElement>
+            </InputGroup>
+
+            {/* Display Search results */}
+          </Box>
+
+          {/* login */}
+          <Box>
+            <Menu
+              // isOpen={isLogin}
+              as={Button}
+            >
+              <MenuButton
+
               // onMouseEnter={() => setIsLogin(true)}
               // onMouseLeave={() => setIsLogin(false)}
               // onMouseLeave={() => setIsLogin(false)}
-            >
-              <LoginIcon />
-            </MenuButton>
-            <MenuList ml="30%" mt="-5%">
-              <MenuItem>
-                <Box
-                  display={"flex"}
-                  justifyContent={"space-between"}
-                  gap={"20px"}
-                >
-                  <Link to="/login">{isLoggedIn ? `Hi ${firstName}` : "Sign In"}</Link> |{" "}
-                  <Link to="/signup">
-                    {isLoggedIn ? (
-                      <Button onClick={() => setIsLoggedIn(false)}>
-                        Logout
-                      </Button>
-                    ) : (
-                      "Join"
-                    )}
-                  </Link>
-                </Box>
-              </MenuItem>
-              <MenuItem>My Account</MenuItem>
-              <MenuItem>My Orders</MenuItem>
-              <MenuItem>Return Information</MenuItem>
-              <MenuItem>Contact Preferences </MenuItem>
-            </MenuList>
-          </Menu>
-        </Box>
+              >
+                <LoginIcon />
+              </MenuButton>
+              <MenuList ml="30%" mt="-5%">
+                <MenuItem>
+                  <Box
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    gap={"20px"}
+                  >
+                    <Link to="/login">
+                      {isLoggedIn ? `Hi ${firstName}` : "Sign In"}
+                    </Link>{" "}
+                    |{" "}
+                    <Link to="/signup">
+                      {isLoggedIn ? (
+                        <Button onClick={() => setIsLoggedIn(false)}>
+                          Logout
+                        </Button>
+                      ) : (
+                        "Join"
+                      )}
+                    </Link>
+                  </Box>
+                </MenuItem>
+                <MenuItem>My Account</MenuItem>
+                <MenuItem>My Orders</MenuItem>
+                <MenuItem>Return Information</MenuItem>
+                <MenuItem>Contact Preferences </MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
 
-        {/* Add to Fav Button */}
-        {/* <Button>
+          {/* Add to Fav Button */}
+          {/* <Button>
           <AddToFav />
         </Button> */}
-        {/* Cart */}
-        <Box>
-          <Link to="/cart">
-          <AddToCart />
-          </Link>
+          {/* Cart */}
+          <Box>
+            <Link to="/cart">
+              <AddToCart />
+            </Link>
+          </Box>
         </Box>
-      </Box>
-    </Flex>
+      </Flex>
+
+      {/* Conditionally render search results */}
+      {searchResults.length > 0 && (
+        <Box
+          
+          w="47%"
+          mt={2}
+          m="auto"
+          ml="40%"
+          // p={5}
+          bg="white"
+          boxShadow="lg"
+          rounded="md"
+        >
+          {searchResults.map((result) => (
+            <Link to={`/${result._id}`} key={result.id}>
+              <Box
+             
+                display={"flex"}
+                justifyContent={"space-around"}
+                // p={5}
+                // boxShadow="lg"
+                _hover={{ backgroundColor: "lightgrey", color: "black" }}
+                rounded="md"
+              >
+                <Heading fontSize={"14px"} textAlign={"center"} m={"2%"}>
+                  {result.title}
+                </Heading>
+              </Box>
+            </Link>
+          ))}
+        </Box>
+      )}
+    </>
   );
 };
 
