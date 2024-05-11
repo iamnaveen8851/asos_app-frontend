@@ -141,7 +141,7 @@ const Navbar = () => {
     if (searchQuery.trim() !== "") {
       const timerId = setTimeout(() => {
         fetchSearchResults(searchQuery);
-      }, 1000);
+      }, 200);
 
       return () => clearTimeout(timerId);
     } else {
@@ -346,6 +346,7 @@ const Navbar = () => {
           {searchResults.map((result) => (
             <Link to={`/${result._id}`} key={result.id}>
               <Box
+              onClick={()=> setSearchResults("")}
              
                 display={"flex"}
                 justifyContent={"space-around"}

@@ -9,26 +9,35 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const SingleProduct = () => {
+  // Declare searchParams before using it
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Retrieve _id from route parameters using useParams
   const { _id } = useParams();
+
   const [data, setData] = useState({});
   const toast = useToast();
 
-  console.log(_id);
   useEffect(() => {
-    getSingleProduct(_id);
-  }, [_id]);
+    // Set search parameter in URL
+    setSearchParams((prevSearchParams) => {
+      const newSearchParams = new URLSearchParams(prevSearchParams);
+      newSearchParams.set("product_Id", _id);
+      return newSearchParams;
+    });
 
-  //   fetch single product using _id
+    getSingleProduct(_id);
+  }, [_id, setSearchParams]);
+
+  // Fetch single product using _id
   const getSingleProduct = async (_id) => {
     try {
       const { data } = await axios.get(
         `https://asos-app-backend.onrender.com/products/${_id}`
       );
-      // console.log(data);
-      console.log(data.singleProduct[0]);
       setData(data.singleProduct[0]);
     } catch (error) {
       console.log(error);
@@ -36,12 +45,12 @@ const SingleProduct = () => {
   };
 
   const addToCart = () => {
-    //  retrieve the exisiting product from the local storage
-    const exisitingProduct = JSON.parse(localStorage.getItem("cart")) || [];
+    // Retrieve the existing products from local storage
+    const existingProducts = JSON.parse(localStorage.getItem("cart")) || [];
 
-    //   update the data with existing product
-    const updatedProduct = [...exisitingProduct, data];
-    localStorage.setItem("cart", JSON.stringify(updatedProduct));
+    // Update the data with existing products
+    const updatedProducts = [...existingProducts, data];
+    localStorage.setItem("cart", JSON.stringify(updatedProducts));
 
     toast({
       title: "Product added to cart",
@@ -54,7 +63,6 @@ const SingleProduct = () => {
 
   return (
     <Flex
-      //   border="1px solid black"
       flexDirection={{
         base: "column",
         sm: "column",
@@ -68,21 +76,15 @@ const SingleProduct = () => {
       m="auto"
       p={10}
     >
-      <Box
-        //   p={5}
-        //    border="1px solid black"
-        boxShadow="xl"
-        ml="5%"
-      >
+      <Box boxShadow="xl" ml="5%">
         <Image src={data.img} />
       </Box>
-      <Box
-        p={10}
-        //   border="1px solid black"
-      >
+      <Box p={10}>
         <Heading>{data.title}</Heading>
         <br />
-        <Text fontSize={"18px"} fontWeight={"550"}>Price : Rs.{data.price}</Text>
+        <Text fontSize={"18px"} fontWeight={"550"}>
+          Price: Rs.{data.price}
+        </Text>
         <br />
         <Button
           bg="blue"
