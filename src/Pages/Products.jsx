@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import {
@@ -12,14 +12,18 @@ import {
   Select,
 } from "@chakra-ui/react";
 import { Link, useSearchParams } from "react-router-dom";
+import { myContext } from "../AuthContext/AuthContext";
 const Products = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortByPrice, setSortByPrice] = useState(
-    searchParams.get("sortByPrice") || "All"
+    searchParams.get("sortByPrice") || ""
   );
+
+  // Search query
+  const { searchQuery } = useContext(myContext);
   // pagination
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,20 +32,31 @@ const Products = () => {
     setSearchParams((prevSearchParam) => {
       const newSearchParam = new URLSearchParams(prevSearchParam);
 
-      newSearchParam.set("sortByPrice", sortByPrice);
+      if (sortByPrice) {
+        newSearchParam.set("sortByPrice", sortByPrice);
+      }else{
+        newSearchParam.delete("sortByPrice");
+      }
+      // Conditionally set the search parameter if searchQuery is not empty
+      if (searchQuery) {
+        newSearchParam.set("search", searchQuery);
+      } else {
+        // Remove the search parameter from URL if searchQuery is empty
+        newSearchParam.delete("search");
+      }
       return newSearchParam;
     });
 
     getData();
-  }, [currentPage, sortByPrice]);
+  }, [currentPage, sortByPrice, searchQuery]);
 
   const getData = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get(
-        `https://asos-app-backend.onrender.com/products?page=${currentPage}&sortByPrice=${sortByPrice}`
+        `https://asos-app-backend.onrender.com/products?page=${currentPage}&sortByPrice=${sortByPrice}&search=${searchQuery}`
       );
-      console.log(data);
+      console.log(data.products);
       setData(data.products);
       setTotalPages(data.totalPages);
       setLoading(false);
@@ -81,7 +96,7 @@ const Products = () => {
           value={sortByPrice}
           onChange={(e) => setSortByPrice(e.target.value)}
         >
-          <option value="All">Sort By Price</option>
+          <option value="">Sort By Price</option>
           <option value="asc">Low To High</option>
           <option value="desc">High To Low</option>
         </Select>

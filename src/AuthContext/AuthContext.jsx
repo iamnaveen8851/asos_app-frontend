@@ -3,7 +3,7 @@ import  { createContext, useState } from "react";
 export const myContext = createContext();
 const AuthContext = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [searchQuery, setSearchQuery] = useState("");
   const [firstName,setFirstName] = useState(null)
   //   const [authState, setIsAuthState] = useState({
   //     isAuth: false,
@@ -11,7 +11,7 @@ const AuthContext = ({ children }) => {
   //   });
 
   return (
-    <myContext.Provider value={{ isLoggedIn, setIsLoggedIn, firstName, setFirstName}}>
+    <myContext.Provider value={{ isLoggedIn, setIsLoggedIn, firstName, setFirstName, searchQuery, setSearchQuery}}>
       {children}
     </myContext.Provider>
   );

@@ -102,7 +102,7 @@ function AddToCart() {
 const Navbar = () => {
   const [isLogin, setIsLogin] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isLoggedIn, setIsLoggedIn, firstName } = useContext(myContext);
+  const { isLoggedIn, setIsLoggedIn, firstName, searchQuery, setSearchQuery } = useContext(myContext);
   // console.log(isLoggedIn)
   return (
     <Flex
@@ -203,7 +203,7 @@ const Navbar = () => {
           // border={"1px solid white"}
         >
           <InputGroup bg="white" borderRadius={"50%"}>
-            <Input placeholder="Search for items and brands" />
+            <Input placeholder="Search for items and brands" value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)} />
             <InputRightElement>
               <IconButton
                 aria-label="Search"
