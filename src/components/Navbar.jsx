@@ -246,7 +246,7 @@ const Navbar = () => {
         >
           <Box
             w="80%"
-            border={"1px solid white"}
+            // border={"1px solid white"}
           >
             <InputGroup bg="white" borderRadius={"50%"}>
               <Input
