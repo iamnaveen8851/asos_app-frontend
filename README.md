@@ -1,6 +1,11 @@
 # Asos-Clone
 
-
+## Tech Stack
+  - React
+  - React-router-dom
+  - chakra UI
+  - axios
+  - MERN
 
 ## Features
   - Landing Page
@@ -47,18 +52,8 @@
 
 
 
-## Tech Stack
-  - React
-  - React-router-dom
-  - chakra UI
-  - axios
-  - MERN
 
-## Components
 
-  - Navbar
-  - AllRoutes
-  - Footer check[x]
 
 
 
